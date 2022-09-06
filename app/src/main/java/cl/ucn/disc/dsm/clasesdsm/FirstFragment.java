@@ -1,9 +1,11 @@
 package cl.ucn.disc.dsm.clasesdsm;
 
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,6 +25,12 @@ public class FirstFragment extends Fragment {
     private RadioButton radioButton1, radioButton2, radioButton3, radioButton4;
 
     private RadioGroup radioGroup;
+
+    private Layout LayoutCheck;
+
+    private CheckBox check1, check2, check3, check4;
+
+    private String txtTempText;
 
     @Override
     public View onCreateView(
@@ -51,6 +59,7 @@ public class FirstFragment extends Fragment {
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (radioButton1.isChecked()) {
                     sum();
                 } else if (radioButton2.isChecked()) {
@@ -61,6 +70,21 @@ public class FirstFragment extends Fragment {
                     div();
                 } else {
                     showMessage();
+                }
+                if (check1.isChecked()){
+                    txtTempText += sum();
+                }
+                if (check2.isChecked()){
+                    res();
+                    txtTempText += sum();
+                }
+                if (check3.isChecked()){
+                    mult();
+                    txtTempText += sum();
+                }
+                if (check4.isChecked()){
+                    div();
+                    txtTempText += sum();
                 }
             }
         });
