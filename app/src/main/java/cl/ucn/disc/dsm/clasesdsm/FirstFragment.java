@@ -5,10 +5,12 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,7 +32,9 @@ public class FirstFragment extends Fragment {
 
     private CheckBox check1, check2, check3, check4;
 
-    private String txtTempText;
+    private String txtTempText, selected;
+
+    private Spinner spinner;
 
     @Override
     public View onCreateView(
@@ -47,7 +51,18 @@ public class FirstFragment extends Fragment {
         radioButton2 = (RadioButton) binding.radioButton2;
         radioButton3 = (RadioButton) binding.radioButton3;
         radioButton4 = (RadioButton) binding.radioButton4;
+        spinner = (Spinner) binding.spOperations;
 
+        String[] operations = {
+                "Sumar",
+                "Restar",
+                "Multiplicar",
+                "Dividir",
+        };
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, operations);
+
+        spinner.setAdapter(adapter);
         return binding.getRoot();
 
 
@@ -56,10 +71,10 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
+        binding.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                /*
                 if (radioButton1.isChecked()) {
                     sum();
                 } else if (radioButton2.isChecked()) {
@@ -71,20 +86,42 @@ public class FirstFragment extends Fragment {
                 } else {
                     showMessage();
                 }
-                if (check1.isChecked()){
+                */ //If else
+                /*
+                if (check1.isChecked()) {
                     txtTempText += sum();
                 }
-                if (check2.isChecked()){
+                if (check2.isChecked()) {
                     res();
                     txtTempText += sum();
                 }
-                if (check3.isChecked()){
+                if (check3.isChecked()) {
                     mult();
                     txtTempText += sum();
                 }
-                if (check4.isChecked()){
+                if (check4.isChecked()) {
                     div();
                     txtTempText += sum();
+                }
+                */ //If
+
+                //TODO: Hay que darle el valor selected desde el spinner
+
+                selected = spinner.getTransitionName();
+
+                switch (selected) {
+                    case "Sumar": {
+                        sum();
+                    }
+                    case "Restar": {
+                        res();
+                    }
+                    case "Multiplicar": {
+                        mult();
+                    }
+                    case "Dividir": {
+                        div();
+                    }
                 }
             }
         });
@@ -95,12 +132,16 @@ public class FirstFragment extends Fragment {
         Toast.makeText(this.getContext(), "No se ha seleccionado ninguna operación", Toast.LENGTH_SHORT).show();
     }
 
+    public void showMessageEmpty() {
+        Toast.makeText(this.getContext(), "No se ha seleccionado ninguna opcion", Toast.LENGTH_SHORT).show();
+    }
+
     public String sum() {
         double val_1 = Integer.parseInt(txt_number_1.getText().toString());
         double val_2 = Integer.parseInt(txt_number_2.getText().toString());
         double sum = val_1 + val_2;
         String res = String.valueOf(sum);
-        txt_number_1.setText(res); //puede haber un error, tal vez sea necesario cambiar el txt_number_1 por txt-resp
+        txt_resp.setText(res); //puede haber un error, tal vez sea necesario cambiar el txt_number_1 por txt-resp
         return res;
     }
 
@@ -113,7 +154,7 @@ public class FirstFragment extends Fragment {
         return res;
     }
 
-    public String mult(){
+    public String mult() {
         double val_1 = Integer.parseInt(txt_number_1.getText().toString());
         double val_2 = Integer.parseInt(txt_number_2.getText().toString());
         double sum = val_1 * val_2;
@@ -122,10 +163,10 @@ public class FirstFragment extends Fragment {
         return res;
     }
 
-    public String div(){
+    public String div() {
         double val_1 = Integer.parseInt(txt_number_1.getText().toString());
         double val_2 = Integer.parseInt(txt_number_2.getText().toString());
-        if(val_2 == 0){
+        if (val_2 == 0) {
             Toast.makeText(this.getContext(), "ERROR: División entre cero", Toast.LENGTH_SHORT).show();
             return "Error";
         }
