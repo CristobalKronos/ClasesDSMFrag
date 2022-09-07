@@ -20,27 +20,20 @@ import cl.ucn.disc.dsm.clasesdsm.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {
 
+    //Initialization
     private FragmentFirstBinding binding;
-
     private EditText txt_number_1, txt_number_2, txt_resp;
-
     private RadioButton radioButton1, radioButton2, radioButton3, radioButton4;
-
     private RadioGroup radioGroup;
-
     private Layout LayoutCheck;
-
     private CheckBox check1, check2, check3, check4;
-
     private String txtTempText, selected;
-
     private Spinner spinner;
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+            Bundle savedInstanceState) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
 
