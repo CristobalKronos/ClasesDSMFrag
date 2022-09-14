@@ -21,5 +21,6 @@
     <string name="buttom2">Restar</string>
     <string name="buttom3">Multiplicar</string>
     <string name="buttom4">Dividir</string>
+    <string name="title_activity_web">ActivityWeb</string>
 
 </resources>

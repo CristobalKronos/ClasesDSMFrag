@@ -67,7 +67,7 @@ public class FirstFragment extends Fragment {
         binding.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
+
                 if (radioButton1.isChecked()) {
                     sum();
                 } else if (radioButton2.isChecked()) {
@@ -79,8 +79,8 @@ public class FirstFragment extends Fragment {
                 } else {
                     showMessage();
                 }
-                */ //If else
-                /*
+                 //If else
+
                 if (check1.isChecked()) {
                     txtTempText += sum();
                 }
@@ -96,7 +96,7 @@ public class FirstFragment extends Fragment {
                     div();
                     txtTempText += sum();
                 }
-                */ //If
+                 //If
 
                 //TODO: Hay que darle el valor selected desde el spinner
 
@@ -122,10 +122,14 @@ public class FirstFragment extends Fragment {
     }
 
     public void showMessage() {
+        /*
+        * Imprime un mensaje predeterminado
+        * */
         Toast.makeText(this.getContext(), "No se ha seleccionado ninguna operación", Toast.LENGTH_SHORT).show();
     }
 
     public void showMessageEmpty() {
+
         Toast.makeText(this.getContext(), "No se ha seleccionado ninguna opcion", Toast.LENGTH_SHORT).show();
     }
 
